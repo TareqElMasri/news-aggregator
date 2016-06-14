@@ -17,6 +17,20 @@ angular.module('app')
                         url: '/app',
                         templateUrl: 'partials/app.html'
                     })
+                    .state('app.simple_page', {
+                        url: '/simple',
+                        templateUrl: 'components/simple.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['countTo',
+                                        'js/components/simple.js',
+                                        '../bower_components/font-awesome/css/font-awesome.css'
+                                    ]);
+                                }
+                            ]
+                        }
+                    })
                     .state('app.dashboard', {
                         url: '/dashboard',
                         templateUrl: 'partials/app_dashboard.html',
@@ -49,9 +63,9 @@ angular.module('app')
                             deps: ['$ocLazyLoad',
                                 function($ocLazyLoad) {
                                     return $ocLazyLoad.load(['countTo',
-                                        'js/controllers/countto.js', 
-                                        'js/controllers/vectormap.js', 
-                                        'js/directives/ui-todowidget.js', 
+                                        'js/controllers/countto.js',
+                                        'js/controllers/vectormap.js',
+                                        'js/directives/ui-todowidget.js',
                                         'js/controllers/messages-widget.js',
                                         '../bower_components/font-awesome/css/font-awesome.css'
                                     ]);
@@ -213,7 +227,7 @@ angular.module('app')
                                     return uiLoad.load(['../bower_components/font-awesome/css/font-awesome.css']);
                                 }
                             ]
-                        }                        
+                        }
                     })
                     .state('app.ui.carousel', {
                         url: '/carousel',
